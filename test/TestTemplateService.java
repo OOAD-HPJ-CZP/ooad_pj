@@ -12,6 +12,7 @@ public class TestTemplateService extends BaseTestTemplate{
     @Autowired
     private CheckitemsService checkitemsService;
 
+    //测试一个模板能否整除存取自己的信息
     @Test
     public void testTemplateService(){
     	Checkitems checkitems1=new Checkitems();

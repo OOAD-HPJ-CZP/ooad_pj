@@ -18,6 +18,7 @@ public class TestChecklistService extends BaseTestTemplate {
     private Checklist checklist;
     private Enterprise enterprise;
 
+    //初始化一个检查表和一个将要被发放的企业
     @Before
     public void setUp() throws Exception {
         checklist = new Checklist();
@@ -37,19 +38,19 @@ public class TestChecklistService extends BaseTestTemplate {
         enterprise.setContactsPhone("654321");
 
     }
-
+    //测试园区发放流程。先调用handout发放，测试是否能正常存取数据。然后假设企业更新了自己的检查表，测试园区能否看到更新之后的数据。
     @Test
     public void testAdminChecklistService() {
         checklist.setFinishedTime(new Date());
         int id = checklistService.handoutCheckList(checklist, enterprise);
         checklist = checklistService.getChecklistById(id);
         Assert.assertEquals("equals", checklist.getState(), "doing");
-        checklist.setState("check");
+        checklist.setState("finished");
         checklistService.updateChecklist(checklist);
         checklist = checklistService.getChecklistById(id);
-        Assert.assertEquals("equals", checklist.getState(), "check");
+        Assert.assertEquals("equals", checklist.getState(), "finished");
     }
-
+    //测试企业更新流程。先假设园区调用handout发放，测试企业是否能得到这张表。然后企业更新了自己的检查表，测试企业能否看到更新之后的数据。
     @Test
     public void testEnterpriseChecklistService() {
         checklist.setFinishedTime(new Date());

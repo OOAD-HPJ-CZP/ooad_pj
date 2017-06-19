@@ -12,6 +12,7 @@ public class TestEnterpriseService extends BaseTestTemplate{
 
     private Enterprise enterprise;
 
+    //测试一个企业能否正常存取自己的基本信息
     @Test
     public void testTestEnterpriseService(){
 		Enterprise enterprise=new Enterprise();

@@ -11,6 +11,7 @@ public class TestCheckitemsService extends BaseTestTemplate{
     @Autowired
     private CheckitemsService checkitemsService;
 
+    //测试检查项能否被正确存入数据库并正确读取。
     @Test
     public void testCheckitemsService(){
     	Checkitems checkitems=new Checkitems();
