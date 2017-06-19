@@ -1,7 +1,8 @@
 
 
-import ooad.DAO.UserDAO;
+import ooad.DAO.interfaces.IUserDAO;
 import ooad.entity.User;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -10,6 +11,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)  //使用junit4进行测试
 @ContextConfiguration
@@ -24,9 +26,9 @@ import javax.transaction.Transactional;
 @Transactional
 public class BaseJunit4Test {
     @Resource
-    private UserDAO userDao;
+    private IUserDAO userDao;
 
-    @Test
+
     public void saveTest() {
 
         User user1 = new User();
@@ -44,12 +46,19 @@ public class BaseJunit4Test {
 
         User user3 = new User();
         user3.setUsername("feihong");
-//        user3.setPassword("123456");
+        user3.setPassword("123456");
 //        user3.setNickName("phj");
 //        user3.setEmail("test@gmail.com");
 
-        userDao.save(user1);
-        userDao.save(user2);
-        userDao.save(user3);
+        userDao.insert(user1);
+        userDao.insert(user2);
+        userDao.insert(user3);
+    }
+
+    @Test
+    public void getTest(){
+        this.saveTest();
+        User user = userDao.queryByUsername("feihong");
+        Assert.assertEquals(user.getPassword(),"123456");
     }
 }

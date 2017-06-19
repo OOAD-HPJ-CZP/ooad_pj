@@ -13,8 +13,7 @@ public class Checkitems {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }

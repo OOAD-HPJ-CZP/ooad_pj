@@ -1,6 +1,7 @@
 package ooad.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 /**
  * Created by admin on 2017/6/19.
@@ -10,10 +11,12 @@ public class Template {
     private int id;
     private String templateName;
     private String description;
+    @Transient
+    private ArrayList<Integer> checkitemsIdList = new ArrayList<Integer>();
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -65,4 +68,16 @@ public class Template {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
+
+    @Transient
+    public void addCheckItemsById(int checkitemsId) {
+        this.checkitemsIdList.add(checkitemsId);
+    }
+
+    @Transient
+    public ArrayList<Integer> getCheckItemsList(){
+        return this.checkitemsIdList;
+    }
+
+
 }
