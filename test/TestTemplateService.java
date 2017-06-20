@@ -12,20 +12,25 @@ public class TestTemplateService extends BaseTestTemplate{
     @Autowired
     private CheckitemsService checkitemsService;
 
+    Checkitems checkitems1,checkitems2;
+    int id1,id2;    
+    @Before
+    public void setUp() throws Exception {
+        Checkitems checkitems1=new Checkitems();
+        checkitems1.setItemName("aaa");
+        checkitems1.setDescription("bbb");
+        Checkitems checkitems2=new Checkitems();
+        checkitems2.setItemName("ccc");
+        checkitems2.setDescription("ddd");
+        Template template=new Template();
+        id1=checkitemsService.saveCheckitems(checkitems1);
+        id2=checkitemsService.saveCheckitems(checkitems2);
+        template.setTemplateName("eee");
+        template.setDescription("fff");
+    }
     //测试一个模板能否整除存取自己的信息
     @Test
     public void testTemplateService(){
-    	Checkitems checkitems1=new Checkitems();
-    	checkitems1.setItemName("aaa");
-    	checkitems1.setDescription("bbb");
-    	int id1=checkitemsService.saveCheckitems(checkitems1);
-    	Checkitems checkitems2=new Checkitems();
-    	checkitems2.setItemName("ccc");
-    	checkitems2.setDescription("ddd");
-    	int id2=checkitemsService.saveCheckitems(checkitems2);
-    	Template template=new Template();
-    	template.setTemplateName("eee");
-    	template.setDescription("fff");
     	templateService.addCheckitemsById(template,id1);
     	templateService.addCheckitemsById(template,id2);
     	int id=templateService.saveTemplate(template);

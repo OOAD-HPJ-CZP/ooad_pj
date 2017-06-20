@@ -12,18 +12,22 @@ public class TestEnterpriseService extends BaseTestTemplate{
 
     private Enterprise enterprise;
 
+    @Before
+    public void setUp() throws Exception {
+        enterprise=new Enterprise();
+        enterprise.setEnterpriseName("aaa");
+        enterprise.setState("bbb");
+        enterprise.setEnterpriseNumber("123456");
+        enterprise.setEnterprisecol("666");
+        enterprise.setTradeId(111);
+        enterprise.setBusinessClass("ccc");
+        enterprise.setContacts("asdfasd");
+        enterprise.setContactsPhone("654321");
+    }
     //测试一个企业能否正常存取自己的基本信息
     @Test
     public void testTestEnterpriseService(){
 		Enterprise enterprise=new Enterprise();
-		enterprise.setEnterpriseName("aaa");
-    	enterprise.setState("bbb");
-    	enterprise.setEnterpriseNumber("123456");
-    	enterprise.setEnterprisecol("666");
-    	enterprise.setTradeId(111);
-    	enterprise.setBusinessClass("ccc");
-    	enterprise.setContacts("asdfasd");
-    	enterprise.setContactsPhone("654321");
 		int id=enterpriseService.saveEnterprise(enterprise);
 		Enterprise testEnterprise=enterpriseService.getEnterpriseById(id);
 		Assert.assertEquals("equals",enterprise.getEnterpriseName(),testEnterprise.getEnterpriseName());
