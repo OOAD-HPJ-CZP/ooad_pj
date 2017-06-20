@@ -1,6 +1,7 @@
 import junit.framework.Assert;
 import ooad.entity.Checkitems;
 import ooad.service.CheckitemsService;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

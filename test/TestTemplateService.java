@@ -3,6 +3,7 @@ import ooad.entity.Checkitems;
 import ooad.entity.Template;
 import ooad.service.CheckitemsService;
 import ooad.service.TemplateService;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +14,8 @@ public class TestTemplateService extends BaseTestTemplate{
     private CheckitemsService checkitemsService;
 
     Checkitems checkitems1,checkitems2;
-    int id1,id2;    
+    int id1,id2;
+	Template template;
     @Before
     public void setUp() throws Exception {
         Checkitems checkitems1=new Checkitems();
@@ -22,7 +24,7 @@ public class TestTemplateService extends BaseTestTemplate{
         Checkitems checkitems2=new Checkitems();
         checkitems2.setItemName("ccc");
         checkitems2.setDescription("ddd");
-        Template template=new Template();
+        template=new Template();
         id1=checkitemsService.saveCheckitems(checkitems1);
         id2=checkitemsService.saveCheckitems(checkitems2);
         template.setTemplateName("eee");

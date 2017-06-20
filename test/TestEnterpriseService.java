@@ -1,6 +1,7 @@
 import junit.framework.Assert;
 import ooad.entity.Enterprise;
 import ooad.service.EnterpriseService;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
